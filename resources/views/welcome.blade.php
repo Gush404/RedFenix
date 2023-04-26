@@ -28,6 +28,7 @@
                 </div>
             @endif
 
+            <h1 class="text-white">HOME</h1>
             
         </div>
     </body>
