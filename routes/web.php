@@ -29,3 +29,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('{any}', function () {
+    return view('dashboard');
+})->where('any', '.*')->middleware(['auth', 'verified'])->name('any');
