@@ -9,6 +9,7 @@ use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Support\Color;
+use App\Orchid\Screens\TaskScreen;
 
 class PlatformProvider extends OrchidServiceProvider
 {
@@ -38,6 +39,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.book')
                 ->title('Navigation')
                 ->route(config('platform.index')),
+
+            Menu::make('TodoList')
+                ->icon('cup')
+                ->route('platform.TodoList'),
 
             Menu::make(__('Users'))
                 ->icon('bs.people')

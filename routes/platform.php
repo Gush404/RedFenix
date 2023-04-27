@@ -11,6 +11,7 @@ use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
+use App\Orchid\Screens\TodoListScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,5 +76,7 @@ Route::screen('roles', RoleListScreen::class)
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.index')
         ->push(__('Roles'), route('platform.systems.roles')));
+
+Route::screen('TodoList', TodoListScreen::class)->name('platform.TodoList');
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');
