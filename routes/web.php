@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,4 +32,4 @@ require __DIR__.'/auth.php';
 
 Route::get('{any}', function () {
     return view('dashboard');
-})->where('any', '.*')->middleware(['auth', 'verified'])->name('any');
+})->where('any', '.*')->middleware(['auth'])->name('any');
