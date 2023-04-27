@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen w-screen bg-gray-800">
-      <div class="border border-2 flex h-16 items-center justify-between text-red-600 px-4">
-          <div class="flex h-full items-center space-x-2 justify-start">
+      <div class="flex border border-2 h-16 gap-4 items-center space-x-5 justify-between text-red-600 px-4">
+          <div class="flex h-full items-center space-x-2 justify-start gap-4">
               <router-link :to="{name:'home'}">home</router-link>
               <router-link :to="{name:'about'}">about</router-link>
           </div>
