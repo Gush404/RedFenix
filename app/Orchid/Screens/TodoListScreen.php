@@ -4,6 +4,11 @@ namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
 
+use Orchid\Support\Facades\Layout;
+use Orchid\Screen\TD;
+use App\Models\item;
+use App\Orchid\Layouts\TodoListLayout;
+
 class TodoListScreen extends Screen
 {
     /**
@@ -13,7 +18,9 @@ class TodoListScreen extends Screen
      */
     public function query(): iterable
     {
-        return [];
+        return [
+            'items'  => item::paginate(),
+        ];
     }
 
     /**
@@ -43,6 +50,8 @@ class TodoListScreen extends Screen
      */
     public function layout(): iterable
     {
-        return [];
+        return [
+            TodoListLayout::class
+        ];
     }
 }
