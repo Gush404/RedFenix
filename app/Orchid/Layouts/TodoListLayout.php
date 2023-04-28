@@ -6,6 +6,8 @@ use App\Models\item;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
+use Orchid\Screen\Actions\Link;
+
 class TodoListLayout extends Table
 {
     /**
@@ -26,6 +28,11 @@ class TodoListLayout extends Table
     protected function columns(): array
     {
         return [
+                TD::make('title', 'Title')
+                    ->render(function (item $item) {
+                        return Link::make($item->title)
+                            ->route('platform.post.edit', $item);
+                    }),
             TD::make('name'),
             TD::make('created_at')->sort(),
             TD::make('completed'),
