@@ -12,6 +12,7 @@ use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 use App\Orchid\Screens\TodoListScreen;
+use App\Orchid\Screens\TodoEditScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +79,6 @@ Route::screen('roles', RoleListScreen::class)
         ->push(__('Roles'), route('platform.systems.roles')));
 
 Route::screen('TodoList', TodoListScreen::class)->name('platform.TodoList');
-Route::screen('TodoList/{item}', TodoEditScreen::class)->name('platform.Todo.edit');
+Route::screen('TodoList/{item?}', TodoEditScreen::class)->name('platform.Todo.edit');
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

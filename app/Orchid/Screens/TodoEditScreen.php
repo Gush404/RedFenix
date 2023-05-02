@@ -1,48 +1,124 @@
 <?php
-
 namespace App\Orchid\Screens;
 
+use App\Models\item;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Quill;
+use Orchid\Screen\Fields\Relation;
+use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Fields\Upload;
+use Orchid\Support\Facades\Layout;
+use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 
 class TodoEditScreen extends Screen
 {
     /**
-     * Fetch data to be displayed on the screen.
+     * @var item
+     */
+    public $item;
+
+    /**
+     * Query data.
+     *
+     * @param item $item
      *
      * @return array
      */
-    public function query(): iterable
+    public function query(item $item): array
     {
-        return [];
+        return [
+            'item' => $item
+        ];
     }
 
     /**
-     * The name of the screen displayed in the header.
-     *
-     * @return string|null
+     * The name is displayed on the user's screen and in the headers
      */
     public function name(): ?string
     {
-        return 'TodoEditScreen';
+        return $this->item->exists ? 'Edit item' : 'Creating a new item';
     }
 
     /**
-     * The screen's action buttons.
-     *
-     * @return \Orchid\Screen\Action[]
+     * The description is displayed on the user's screen under the heading
      */
-    public function commandBar(): iterable
+    public function description(): ?string
     {
-        return [];
+        return "editing item";
     }
 
     /**
-     * The screen's layout elements.
+     * Button commands.
      *
-     * @return \Orchid\Screen\Layout[]|string[]
+     * @return Link[]
      */
-    public function layout(): iterable
+    public function commandBar(): array
     {
-        return [];
+        return [
+            Button::make('Create item')
+                ->icon('pencil')
+                ->method('createOrUpdate')
+                ->canSee(!$this->item->exists),
+
+            Button::make('Update')
+                ->icon('note')
+                ->method('createOrUpdate')
+                ->canSee($this->item->exists),
+
+            Button::make('Remove')
+                ->icon('trash')
+                ->method('remove')
+                ->canSee($this->item->exists),
+        ];
+    }
+
+    /**
+     * Views.
+     *
+     * @return Layout[]
+     */
+    public function layout(): array
+    {
+        return [
+            Layout::rows([
+                Relation::make('item.author')
+                    ->title('Author')
+                    ->fromModel(User::class, 'name'),
+            ])
+        ];
+    }
+
+    /**
+     * @param item    $item
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function createOrUpdate(item $item, Request $request)
+    {
+        $item->fill($request->get('item'))->save();
+
+        Alert::info('You have successfully created a item.');
+
+        return redirect()->route('platform.item.list');
+    }
+
+    /**
+     * @param item $item
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function remove(item $item)
+    {
+        $item->delete();
+
+        Alert::info('You have successfully deleted the item.');
+
+        return redirect()->route('platform.TodoList');
     }
 }

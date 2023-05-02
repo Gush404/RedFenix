@@ -44,6 +44,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('cup')
                 ->route('platform.TodoList'),
 
+            Menu::make('TodoEdit')
+                ->icon('database')
+                ->route('platform.Todo.edit'),
+
             Menu::make(__('Users'))
                 ->icon('bs.people')
                 ->route('platform.systems.users')

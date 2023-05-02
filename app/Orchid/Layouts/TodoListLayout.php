@@ -28,12 +28,11 @@ class TodoListLayout extends Table
     protected function columns(): array
     {
         return [
-                TD::make('title', 'Title')
-                    ->render(function (item $item) {
-                        return Link::make($item->title)
-                            ->route('platform.post.edit', $item);
-                    }),
-            TD::make('name'),
+            TD::make('name')
+                ->render(function (item $item) {
+                    return Link::make($item->id)
+                        ->route('platform.Todo.edit', $item);
+                }),
             TD::make('created_at')->sort(),
             TD::make('completed'),
         ];
