@@ -31,10 +31,10 @@ class TodoListLayout extends Table
             TD::make('name'),
             TD::make('created_at')->sort(),
             TD::make('completed'),
-            TD::make('Edit')->render(function (item $item) {
-                return Link::make($item->id)
-                    ->route('platform.Todo.edit', $item);
-            }),
+
+            TD::make('')->render(function ($item) {
+                return Link::make('')->icon('pencil')->route('platform.Todo.edit', $item);
+            })
         ];
     }
 }

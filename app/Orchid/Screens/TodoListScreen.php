@@ -32,7 +32,7 @@ class TodoListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'TodoListScreen';
+        return 'All items';
     }
 
     /**
