@@ -40,7 +40,7 @@ class TodoEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->item->exists ? 'Edit item' : 'Creating a new item';
+        return $this->item->exists ? 'Editing item' : 'Creating a new item';
     }
 
     /**
