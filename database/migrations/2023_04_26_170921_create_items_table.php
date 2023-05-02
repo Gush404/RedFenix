@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('description')->nullable();
             $table->boolean('completed')->default(false);
             $table->timestamp('completed_at')->nullable();
+            $table->bigInteger('author')->nullable();
             $table->timestamps();
         });
     }

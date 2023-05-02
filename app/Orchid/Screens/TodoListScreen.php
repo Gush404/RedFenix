@@ -9,6 +9,8 @@ use Orchid\Screen\TD;
 use App\Models\item;
 use App\Orchid\Layouts\TodoListLayout;
 
+use Orchid\Screen\Actions\Link;
+
 class TodoListScreen extends Screen
 {
     /**
@@ -38,9 +40,13 @@ class TodoListScreen extends Screen
      *
      * @return \Orchid\Screen\Action[]
      */
-    public function commandBar(): iterable
+    public function commandBar(): array
     {
-        return [];
+        return [
+            Link::make('Create new')
+                ->icon('pencil')
+                ->route('platform.Todo.edit')
+        ];
     }
 
     /**
@@ -48,7 +54,7 @@ class TodoListScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]|string[]
      */
-    public function layout(): iterable
+    public function layout(): array
     {
         return [
             TodoListLayout::class

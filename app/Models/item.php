@@ -12,4 +12,6 @@ class item extends Model
 {
     use HasFactory;
     use AsSource;
+
+    protected $fillable = ['author', 'name'];
 }

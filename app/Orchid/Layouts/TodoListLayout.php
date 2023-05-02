@@ -28,13 +28,13 @@ class TodoListLayout extends Table
     protected function columns(): array
     {
         return [
-            TD::make('name')
-                ->render(function (item $item) {
-                    return Link::make($item->id)
-                        ->route('platform.Todo.edit', $item);
-                }),
+            TD::make('name'),
             TD::make('created_at')->sort(),
             TD::make('completed'),
+            TD::make('Edit')->render(function (item $item) {
+                return Link::make($item->id)
+                    ->route('platform.Todo.edit', $item);
+            }),
         ];
     }
 }

@@ -48,7 +48,7 @@ class TodoEditScreen extends Screen
      */
     public function description(): ?string
     {
-        return "editing item";
+        return "";
     }
 
     /**
@@ -88,7 +88,17 @@ class TodoEditScreen extends Screen
                 Relation::make('item.author')
                     ->title('Author')
                     ->fromModel(User::class, 'name'),
-            ])
+
+                Input::make('item.name')
+                    ->title('name')
+                    ->placeholder('Item name'),
+
+                TextArea::make('item.description')
+                    ->title('Description')
+                    ->rows(3)
+                    ->maxlength(200)
+                    ->placeholder('Brief description for preview'),
+            ]),
         ];
     }
 
@@ -104,7 +114,7 @@ class TodoEditScreen extends Screen
 
         Alert::info('You have successfully created a item.');
 
-        return redirect()->route('platform.item.list');
+        return redirect()->route('platform.TodoList');
     }
 
     /**

@@ -78,7 +78,7 @@ Route::screen('roles', RoleListScreen::class)
         ->parent('platform.index')
         ->push(__('Roles'), route('platform.systems.roles')));
 
-Route::screen('TodoList', TodoListScreen::class)->name('platform.TodoList');
+Route::screen('TodoLists', TodoListScreen::class)->name('platform.TodoList');
 Route::screen('TodoList/{item?}', TodoEditScreen::class)->name('platform.Todo.edit');
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');
