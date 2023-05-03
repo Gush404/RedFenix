@@ -28,7 +28,7 @@
                 </div>
             @endif
 
-            <h1 class="text-white">HOME</h1>
+            <h1 class="text-white text-9xl">Login to Start</h1>
             
         </div>
     </body>
