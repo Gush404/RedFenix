@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+
 class ProfileController extends Controller
 {
     /**
@@ -56,5 +57,14 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+    
+    public function changeName(Request $request)
+    {
+        $user = auth()->user();
+        $user->name = $request->input('name');
+        $user->save();
+        
+        return response()->json(['success' => true]);
     }
 }

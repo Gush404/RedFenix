@@ -14,4 +14,8 @@ class item extends Model
     use AsSource;
 
     protected $fillable = ['author', 'name'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

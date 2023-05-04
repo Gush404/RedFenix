@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('description')->nullable();
             $table->boolean('completed')->default(false);
             $table->timestamp('completed_at')->nullable();
             $table->bigInteger('author')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -6,6 +6,7 @@ use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Platform\Models\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password', 
         'permissions',
     ];
 
@@ -67,4 +68,8 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
     ];
+
+    public function items(){
+        return $this->hasMany(item::class);
+    }
 }

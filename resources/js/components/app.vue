@@ -4,6 +4,7 @@
             <div class="flex h-full items-center space-x-2 justify-start gap-4">
                 <router-link :to="{name:'home'}">home</router-link>
                 <router-link :to="{name:'about'}">about</router-link>
+                <router-link :to="{name:'profile'}">profile</router-link>
             </div>
             <form action="/logout" method="post">
                 <input type="hidden" name="_token" :value="csrf">

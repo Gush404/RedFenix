@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-
+use Illuminate\Support\Facades\Auth;
 class TodolistController extends Controller
 {
     /**
@@ -13,13 +13,17 @@ class TodolistController extends Controller
      */
     public function index()
     {
-        return item::orderBy('created_at', 'DESC')->get();
+        return Item::where('user_id', auth()->id())
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        
     }
 
     public function save(Request $request)
     {
         $newItem = new Item;
         $newItem->name = $request->item["name"];
+        $newItem->user_id = Auth::user()->id;
         $newItem->save();
 
         return $newItem;
