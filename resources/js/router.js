@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import home from "./pages/home.vue";
 import about from "./pages/about.vue";
 import profile from "./pages/profile.vue";
+import table from "./pages/table.vue";
 
 const routes = [
     {
@@ -19,6 +20,11 @@ const routes = [
         path: '/profile',
         name: 'profile',
         component: profile
+    },
+    {
+        path: '/table',
+        name: 'table',
+        component: table
     },
 ];
 

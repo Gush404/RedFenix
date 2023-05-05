@@ -29,6 +29,7 @@
             <router-link :to="{name:'home'}">home</router-link>
             <router-link :to="{name:'about'}">about</router-link>
             <router-link :to="{name:'profile'}">profile</router-link>
+            <router-link :to="{name:'table'}">table</router-link>
           </div>
           <form action="/logout" method="post">
             <input type="hidden" name="_token" :value="csrf">
